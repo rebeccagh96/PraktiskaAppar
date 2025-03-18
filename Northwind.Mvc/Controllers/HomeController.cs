@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Northwind.EntityModels;
 using Northwind.Mvc.Models;
 using System.Diagnostics;
 
@@ -7,15 +8,26 @@ namespace Northwind.Mvc.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly NorthwindDatabaseContext db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, 
+            NorthwindDatabaseContext injectedContext)
         {
             _logger = logger;
+            db = injectedContext;
         }
 
         public IActionResult Index()
         {
-            return View();
+            HomeIndexViewModel model = new(
+
+                VisitorCount: Random.Shared.Next(1, 1001),
+                Categories: db.Categories.ToList(),
+                Products: db.Products.ToList()
+
+            );
+
+            return View(model);
         }
 
         public IActionResult Privacy()
