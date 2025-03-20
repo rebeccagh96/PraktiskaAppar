@@ -46,6 +46,25 @@ namespace Northwind.Mvc.Controllers
             return View(model);
         }
 
+        public IActionResult ModelBindning()
+        {
+            return View(); //En sida med ett formulär
+        }
+
+        [HttpPost]
+        public IActionResult ModelBindning(Thing thing)
+        {
+            HomeModelBindningViewModel model = new(
+                thing,
+                HasErrors: !ModelState.IsValid,
+                ValidationErrors: ModelState.Values
+                .SelectMany(state => state.Errors)
+                .Select(error => error.ErrorMessage)
+            );
+                
+            return View(thing); //En sida som visar det användaren skickade
+        }
+
         public IActionResult Privacy()
         {
             return View();
