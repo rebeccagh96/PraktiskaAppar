@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Northwind.EntityModels;
 using Northwind.Mvc.Models;
@@ -65,6 +66,7 @@ namespace Northwind.Mvc.Controllers
             return View(thing); //En sida som visar det användaren skickade
         }
 
+        [Authorize(Roles="Admin")]
         public IActionResult Privacy()
         {
             return View();
