@@ -47,6 +47,21 @@ namespace Northwind.Mvc.Controllers
             return View(model);
         }
 
+        public IActionResult Category(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return BadRequest("You must pass in a CategoryId, " +
+                    "for example, /Home/Category/1");
+            }
+            Category? model = db.Categories.SingleOrDefault(p => p.CategoryId == id);
+            if (model is null)
+            {
+                return NotFound($"CategoryId {id} not found.");
+            }
+
+            return View(model);
+        }
         public IActionResult ModelBindning()
         {
             return View(); //En sida med ett formulär
