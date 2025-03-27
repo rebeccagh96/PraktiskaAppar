@@ -2,12 +2,14 @@
 @{
     ViewData["Title"] = "Category Information";
 }
+<head>
+    <link rel="stylesheet" href="~/css/Style.css" />
+</head>
 
 <h2>Category details</h2>
-<hr />
-<div>
-    <dl class="dl-horizontal">
-        <img src="~/images/category@(Model.CategoryId).jpg" alt="@Model.CategoryName" style="width: 18rem;"/>
+<div class="category-box">
+    <dl>
+        <img src="~/images/category@(Model.CategoryId).jpg" alt="@Model.CategoryName" style="width: 18rem;" />
         <dt>Category Id</dt>
         <dd>@Model.CategoryId</dd>
 

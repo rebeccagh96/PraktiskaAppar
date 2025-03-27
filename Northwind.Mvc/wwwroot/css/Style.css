@@ -1,0 +1,11 @@
+﻿body {
+    background-color: lavender;
+}
+
+.category-box {
+    background-color: ghostwhite;
+    box-shadow: grey 1px 1px 10px;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 20rem;
+}
